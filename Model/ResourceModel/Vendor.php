@@ -14,7 +14,7 @@ class Vendor extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 
     protected function _construct()
     {
-        $this->_init('mageplaza_vendor_vendor', 'id');
+        $this->_init('mageplaza_vendor_vendor', 'vendor_id');
     }
 
 }

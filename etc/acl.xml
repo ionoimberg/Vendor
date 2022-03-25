@@ -6,7 +6,7 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Sales::sales">
                     <resource id="Magento_Sales::sales_operation">
-                            <resource id="Mageplaza_Vendor::vendor" title="Vendor" sortOrder="90"/>
+                            <resource id="Magento_Sales::vendor" title="Vendor" sortOrder="90"/>
                     </resource>
                 </resource>
             </resource>

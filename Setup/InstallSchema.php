@@ -14,7 +14,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 $installer->getTable('mageplaza_vendor_vendor')
             )
                 ->addColumn(
-                    'id',
+                    'vendor_id',
                     \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
                     null,
                     [
