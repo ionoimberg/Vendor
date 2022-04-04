@@ -1,14 +1,17 @@
 <?php
+
 namespace Mageplaza\Vendor\Setup;
 
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
 
-    public function install(\Magento\Framework\Setup\SchemaSetupInterface $setup, \Magento\Framework\Setup\ModuleContextInterface $context)
-    {
+    public function install(
+        \Magento\Framework\Setup\SchemaSetupInterface $setup,
+        \Magento\Framework\Setup\ModuleContextInterface $context
+    ) {
         $installer = $setup;
         $installer->startSetup();
-        
+
         if (!$installer->tableExists('mageplaza_vendor_vendor')) {
             $table = $installer->getConnection()->newTable(
                 $installer->getTable('mageplaza_vendor_vendor')
@@ -20,7 +23,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                     [
                         'identity' => true,
                         'nullable' => false,
-                        'primary'  => true,
+                        'primary' => true,
                         'unsigned' => true,
                     ],
                     'ID'
@@ -34,23 +37,23 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 )
                 ->addColumn(
                     'status',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                    255,
-                    ['nullable => false'],
+                    \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                    1,
+                    [],
                     'Status'
                 )
                 ->addColumn(
                     'email',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     255,
-                    ['nullable => false'],
+                    [],
                     'Email'
                 )
                 ->addColumn(
                     'action',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     255,
-                    ['nullable => false'],
+                    [],
                     'Action'
                 )
                 ->setComment('Vendor Table');

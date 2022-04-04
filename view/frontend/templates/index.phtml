@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var \Mageplaza\HelloWorld\Block\Index $block
+ * @var \Mageplaza\Vendor\Block\Index $block
  */
 
 ?>
@@ -20,6 +20,8 @@
         <th class="vendor-name">Name</th>
         <th>Status</th>
         <th>Email</th>
+        <th>Telephone</th>
+        <th>Action</th>
     </tr>
     <?php
     foreach ($block->getVendorCollection() as $key=>$vendor){
@@ -28,6 +30,7 @@
                     <td>'.$vendor->getName().'</td>
                     <td>'.$vendor->getStatus().'</td>
                     <td>'.$vendor->getEmail().'</td>
+                    <td>'.$vendor->getTelephone().'</td>
                     <td>'.$vendor->getAction().'</td>
                   </tr>';
     }

@@ -1,12 +1,10 @@
 <?php
 namespace Mageplaza\Vendor\Model;
-class Vendor extends \Magento\Framework\Model\AbstractModel implements \Magento\Framework\DataObject\IdentityInterface
+
+use Magento\Framework\Model\AbstractModel;
+class Vendor extends AbstractModel
 {
-    const CACHE_TAG = 'mageplaza_vendor_vendor';
-
-    protected $_cacheTag = 'mageplaza_vendor_vendor';
-
-    protected $_eventPrefix = 'mageplaza_vendor_vendor';
+    const CACHE_TAG = 'vendor_id';
 
     protected function _construct()
     {
@@ -16,12 +14,5 @@ class Vendor extends \Magento\Framework\Model\AbstractModel implements \Magento\
     public function getIdentities()
     {
         return [self::CACHE_TAG . '_' . $this->getId()];
-    }
-
-    public function getDefaultValues()
-    {
-        $values = [];
-
-        return $values;
     }
 }

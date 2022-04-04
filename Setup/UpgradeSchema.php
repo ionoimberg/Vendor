@@ -1,4 +1,5 @@
 <?php
+
 namespace Mageplaza\Vendor\Setup;
 
 use Magento\Framework\Setup\UpgradeSchemaInterface;
@@ -7,12 +8,13 @@ use Magento\Framework\Setup\ModuleContextInterface;
 
 class UpgradeSchema implements UpgradeSchemaInterface
 {
-    public function upgrade( SchemaSetupInterface $setup, ModuleContextInterface $context ) {
+    public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
+    {
 
         $installer = $setup;
         $installer->startSetup();
 
-        if(version_compare($context->getVersion(), '1.1.0', '<')) {
+        if (version_compare($context->getVersion(), '1.1.0', '<')) {
             if (!$installer->tableExists('mageplaza_vendor_vendor')) {
                 $table = $installer->getConnection()->newTable(
                     $installer->getTable('mageplaza_vendor_vendor')
@@ -24,7 +26,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                         [
                             'identity' => true,
                             'nullable' => false,
-                            'primary'  => true,
+                            'primary' => true,
                             'unsigned' => true,
                         ],
                         'ID'
@@ -38,23 +40,23 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     )
                     ->addColumn(
                         'status',
-                        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                        255,
-                        ['nullable => false'],
+                        \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                        1,
+                        [],
                         'Status'
                     )
                     ->addColumn(
                         'email',
                         \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                         255,
-                        ['nullable => false'],
+                        [],
                         'Email'
                     )
                     ->addColumn(
                         'action',
                         \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                         255,
-                        ['nullable => false'],
+                        [],
                         'Action'
                     )
                     ->setComment('Vendor Table');
@@ -71,6 +73,19 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
                 );
             }
+        }
+
+        if (version_compare($context->getVersion(), '1.2.0', '<')) {
+            $installer->getConnection()->addColumn(
+                $installer->getTable('mageplaza_vendor_vendor'),
+                'telephone',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => 255,
+                    'comment' => 'Telephone',
+                    'after' => 'email'
+                ]
+            );
         }
 
         $installer->endSetup();

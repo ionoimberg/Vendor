@@ -1,8 +1,10 @@
 <?php
-
 namespace Mageplaza\Vendor\Controller\Adminhtml\Vendor;
 
-class Index extends \Magento\Backend\App\Action
+use Magento\Framework\Controller\ResultFactory;
+
+class Add extends \Magento\Backend\App\Action
+
 {
     protected $resultPageFactory;
 
@@ -18,8 +20,7 @@ class Index extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->prepend((__('Vendor Portal')));
-
+        $resultPage->getConfig()->getTitle()->prepend(__('Add New Vendor'));
         return $resultPage;
     }
 }
