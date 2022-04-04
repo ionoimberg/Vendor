@@ -117,5 +117,71 @@
             </field>
         </fieldset>
     </fieldset>
-
+    <fieldset name="settings_fieldset">
+        <settings>
+            <label translate="true">Vendor Settings</label>
+        </settings>
+        <fieldset name="general_settings">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Settings</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+            <field name="currency" sortOrder="0" formElement="select">
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Currency</label>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Magento\Config\Model\Config\Source\Locale\Currency" />
+                            <caption translate="true">-- Please Select --</caption>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="notifications" sortOrder="10" component="Magento_Ui/js/form/element/single-checkbox-toggle-notice" formElement="checkbox">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="default" xsi:type="number">0</item>
+                        <item name="notices" xsi:type="array">
+                            <item name="0" xsi:type="string" translate="true">Disabled</item>
+                            <item name="1" xsi:type="string" translate="true">Enabled</item>
+                        </item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>boolean</dataType>
+                    <label translate="true">Notify on New Orders</label>
+                </settings>
+                <formElements>
+                    <checkbox>
+                        <settings>
+                            <valueMap>
+                                <map name="false" xsi:type="number">0</map>
+                                <map name="true" xsi:type="number">1</map>
+                            </valueMap>
+                            <prefer>toggle</prefer>
+                        </settings>
+                    </checkbox>
+                </formElements>
+            </field>
+            <field name="specifications" sortOrder="30" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="notice" xsi:type="string" translate="true">Use comma to sepatare emails</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Specify in CC Whom to Notify on New Orders</label>
+                </settings>
+            </field>
+        </fieldset>
+    </fieldset>
 </form>

@@ -27,6 +27,10 @@ class Save extends \Magento\Backend\App\Action
                 "status" => $data['main_fieldset']['general_information']['status'],
                 "email" => $data['main_fieldset']['general_information']['email'],
                 "telephone" => $data['main_fieldset']['general_information']['telephone'],
+                "currency" => $data['settings_fieldset']['general_settings']['currency'],
+                "notifications" => $data['settings_fieldset']['general_settings']['notifications'],
+                "specifications" => $data['settings_fieldset']['general_settings']['specifications'],
+
             ]);
             $saveData = $model->save();
             if($saveData){

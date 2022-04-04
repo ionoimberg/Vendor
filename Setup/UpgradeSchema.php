@@ -88,6 +88,45 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
         }
 
+        if (version_compare($context->getVersion(), '1.2.1', '<')) {
+            $installer->getConnection()->addColumn(
+                $installer->getTable('mageplaza_vendor_vendor'),
+                'currency',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => 255,
+                    'comment' => 'Currency',
+                    'after' => 'telephone'
+                ]
+            );
+        }
+
+        if (version_compare($context->getVersion(), '1.2.2', '<')) {
+            $installer->getConnection()->addColumn(
+                $installer->getTable('mageplaza_vendor_vendor'),
+                'notifications',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => 255,
+                    'comment' => 'Notifications',
+                    'after' => 'currency'
+                ]
+            );
+        }
+
+        if (version_compare($context->getVersion(), '1.2.3', '<')) {
+            $installer->getConnection()->addColumn(
+                $installer->getTable('mageplaza_vendor_vendor'),
+                'specifications',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => 255,
+                    'comment' => 'Specifications',
+                    'after' => 'notifications'
+                ]
+            );
+        }
+
         $installer->endSetup();
     }
 }
