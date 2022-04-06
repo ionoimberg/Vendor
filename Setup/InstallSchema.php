@@ -49,13 +49,6 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                     [],
                     'Email'
                 )
-                ->addColumn(
-                    'action',
-                    \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                    255,
-                    [],
-                    'Action'
-                )
                 ->setComment('Vendor Table');
             $installer->getConnection()->createTable($table);
 

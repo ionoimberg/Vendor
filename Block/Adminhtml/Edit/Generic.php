@@ -11,10 +11,10 @@ class Generic
     {
         $this->context = $context;
     }
-    
-    public function getSettingsId()
+
+    public function getId()
     {
-        return 1;
+        return $this->context->getRequest()->getParam('vendor_id');
     }
 
     public function getUrl($route = '', $params = [])

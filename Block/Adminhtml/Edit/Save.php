@@ -4,7 +4,7 @@ namespace Mageplaza\Vendor\Block\Adminhtml\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
-class Save implements ButtonProviderInterface
+class Save extends Generic implements ButtonProviderInterface
 
 {
     public function getButtonData()

@@ -7,7 +7,7 @@ use Mageplaza\Vendor\Model\ResourceModel\Vendor\CollectionFactory;
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     protected $loadedData;
-    
+
     public function __construct(
         $name,
         $primaryFieldName,
@@ -15,9 +15,9 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         CollectionFactory $CollectionFactory,
         array $meta = [],
         array $data = []
-    ) 
+    )
     {
-        $this->collection = $CollectionFactory->create();
+        $this->collection = $CollectionFactory->create()->load();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
@@ -29,8 +29,14 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
         $items = $this->collection->getItems();
 
-        foreach ($items as $item) {
-            $this->loadedData[$item->getId()] = $item->getData();
+        foreach ($items as $item)
+        {
+            $this->loadedData[$item->getData('vendor_id')]['main_fieldset']['general_information'] = $item->getData();
+            $this->loadedData[$item->getData('vendor_id')]['settings_fieldset']['general_settings'] = $item->getData();
+            $this->loadedData[$item->getData('vendor_id')]['addresses_fieldset']['billing_address'] = $item->getData();
+            $this->loadedData[$item->getData('vendor_id')]['addresses_fieldset']['shipping_address'] = $item->getData();
+
+
         }
 
         return $this->loadedData;

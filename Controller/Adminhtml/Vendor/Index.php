@@ -18,6 +18,7 @@ class Index extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
+        $resultPage->setActiveMenu('Mageplaza_Vendor::mageplaza_vendor_vendor_listing');
         $resultPage->getConfig()->getTitle()->prepend((__('Vendor Portal')));
 
         return $resultPage;

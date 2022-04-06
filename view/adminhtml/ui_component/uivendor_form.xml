@@ -33,7 +33,7 @@
             <argument name="class" xsi:type="string">Mageplaza\Vendor\Model\DataProvider</argument>
             <argument name="name" xsi:type="string">mageplaza_vendor_vendor_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">vendor_id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">vendor_id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="submit_url" xsi:type="url" path="*/*/save"/>
@@ -59,6 +59,18 @@
                     <item name="sortOrder" xsi:type="number">20</item>
                 </item>
             </argument>
+            <field name="vendor_id" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">vendor</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>false</visible>
+                    <dataScope>vendor_id</dataScope>
+                </settings>
+            </field>
             <field name="name" sortOrder="10" formElement="input">
                 <settings>
                     <validation>
@@ -184,4 +196,216 @@
             </field>
         </fieldset>
     </fieldset>
+    <fieldset name="addresses_fieldset">
+        <settings>
+            <label translate="true">Vendor Addresses</label>
+        </settings>
+        <fieldset name="billing_address">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Billing Address</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+            <field name="contact_name" sortOrder="0" formElement="input">
+                <settings>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Contact Name</label>
+                </settings>
+            </field>
+            <field name="street" sortOrder="10" formElement="input">
+                <settings>
+                    <dataType>email</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Street</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                </settings>
+            </field>
+            <field name="city" sortOrder="20" formElement="input">
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">City</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                </settings>
+            </field>
+            <field name="postal_code" sortOrder="30" formElement="input">
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Postal Code</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </settings>
+            </field>
+            <field name="country" sortOrder="40" formElement="select">
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Country</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Magento\PageBuilder\Model\Config\Source\Country" />
+                            <caption translate="true">-- Please Select --</caption>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="state_region" sortOrder="50" formElement="input">
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">State/Region</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </settings>
+            </field>
+        </fieldset>
+        <fieldset name="shipping_address">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Shipping Address</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+            <field name="custom_use_parent_settings" component="Magento_Ui/js/form/element/single-checkbox" sortOrder="0" formElement="checkbox">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="default" xsi:type="number">0</item>
+                    </item>
+                </argument>
+                <settings>
+                    <additionalClasses>
+                        <class name="admin__field-x-small">true</class>
+                    </additionalClasses>
+                    <dataType>boolean</dataType>
+                    <label>Same as billing</label>
+                    <exports>
+                        <link name="checked">${$.parentName}.shipp_contact_name:disabled</link>
+                        <link name="checked">${$.parentName}.shipp_street:disabled</link>
+                        <link name="checked">${$.parentName}.shipp_city:disabled</link>
+                        <link name="checked">${$.parentName}.shipp_postal_code:disabled</link>
+                        <link name="checked">${$.parentName}.shipp_country:disabled</link>
+                        <link name="checked">${$.parentName}.shipp_state_region:disabled</link>
+                    </exports>
+                </settings>
+                <formElements>
+                    <checkbox>
+                        <settings>
+                            <valueMap>
+                                <map name="false" xsi:type="string">0</map>
+                                <map name="true" xsi:type="string">1</map>
+                            </valueMap>
+                            <prefer>toggle</prefer>
+                        </settings>
+                    </checkbox>
+                </formElements>
+            </field>
+            <field name="shipp_contact_name" sortOrder="10" formElement="input">
+                <settings>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Contact Name</label>
+                    <imports>
+                        <link name="disabled">${ $.parentName }.custom_use_parent_settings:checked</link>
+                    </imports>
+                </settings>
+            </field>
+
+            <field name="shipp_street" sortOrder="20" formElement="input">
+                <settings>
+                    <dataType>email</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Street</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <imports>
+                        <link name="disabled">${ $.parentName }.custom_use_parent_settings:checked</link>
+                    </imports>
+                </settings>
+            </field>
+            <field name="shipp_city" sortOrder="30" formElement="input">
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">City</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <imports>
+                        <link name="disabled">${ $.parentName }.custom_use_parent_settings:checked</link>
+                    </imports>
+                </settings>
+            </field>
+            <field name="shipp_postal_code" sortOrder="40" formElement="input">
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Postal Code</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                    <imports>
+                        <link name="disabled">${ $.parentName }.custom_use_parent_settings:checked</link>
+                    </imports>
+                </settings>
+            </field>
+            <field name="shipp_country" sortOrder="50" formElement="select">
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">Country</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <imports>
+                        <link name="disabled">${ $.parentName }.custom_use_parent_settings:checked</link>
+                    </imports>
+                </settings>
+                <formElements>
+                    <select>
+                        <settings>
+                            <options class="Magento\PageBuilder\Model\Config\Source\Country" />
+                            <caption translate="true">-- Please Select --</caption>
+                        </settings>
+                    </select>
+                </formElements>
+            </field>
+            <field name="shipp_state_region" sortOrder="60" formElement="input">
+                <settings>
+                    <dataType>text</dataType>
+                    <visible>true</visible>
+                    <label translate="true">State/Region</label>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                    <imports>
+                        <link name="disabled">${ $.parentName }.custom_use_parent_settings:checked</link>
+                    </imports>
+                </settings>
+            </field>
+        </fieldset>
+    </fieldset>
+
 </form>

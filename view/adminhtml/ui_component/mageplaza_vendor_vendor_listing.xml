@@ -75,6 +75,18 @@
         <exportButton name="export_button"/>
     </listingToolbar>
     <columns name="spinner_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">mageplaza_vendor_vendor_listing.mageplaza_vendor_vendor_listing.mageplaza_vendor_vendor_columns.actions</item>
+                    <item name="target" xsi:type="string">applyAction</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">edit</item>
+                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -149,19 +161,16 @@
                 </item>
             </argument>
         </column>
-        <column name="action" sortOrder="50">
+        <actionsColumn name="actions" class="Mageplaza\Vendor\Plugin\Adminhtml\Actions" sortOrder="30">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">Action</item>
+                    <item name="indexField" xsi:type="string">vendor_id</item>
                 </item>
             </argument>
-        </column>
+            <settings>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>
