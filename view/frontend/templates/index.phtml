@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @var \Mageplaza\Vendor\Block\Index $block
+ */
+
+?>
+
+<style>
+    table {  font-family: arial, sans-serif;  border-collapse: collapse;  width: 100%;  margin-top: 30px;}
+    td, th {  border: 1px solid #dddddd;  text-align: left;  padding: 8px;  }
+    tr:nth-child(even) { background-color: #dddddd; }
+    .vendor-id{width:2%} .vendor-name{width:30%}
+
+</style>
+
+<table>
+    <tr>
+        <th class="vendor-id">Id</th>
+        <th class="vendor-name">Name</th>
+        <th>Status</th>
+        <th>Email</th>
+        <th>Telephone</th>
+        <th>Action</th>
+    </tr>
+    <?php
+    foreach ($block->getVendorCollection() as $key=>$vendor){
+        echo '<tr>
+                    <td>'.$vendor->getId().'</td>
+                    <td>'.$vendor->getName().'</td>
+                    <td>'.$vendor->getStatus().'</td>
+                    <td>'.$vendor->getEmail().'</td>
+                    <td>'.$vendor->getTelephone().'</td>
+                    <td>'.$vendor->getAction().'</td>
+                  </tr>';
+    }
+    ?>
+</table>
+
+</body>
+</html>
